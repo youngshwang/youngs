@@ -28,7 +28,7 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
     yeoman:
       # configurable paths
-      
+
       client: require('./bower.json').appPath or 'client'
       dist: 'dist'
 
@@ -239,10 +239,10 @@ module.exports = (grunt) ->
           /bootstrap.js/
           '/json3/'
           '/es5-shim/'
-          
+
           /bootstrap.css/
           /font-awesome.css/
-          
+
         ]
 
     # Renames files for browser caching purposes
@@ -568,6 +568,7 @@ module.exports = (grunt) ->
           '<%= yeoman.client %>/app/app.scss': [
             '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'
             '!<%= yeoman.client %>/app/app.{scss,sass}'
+            '!<%= yeoman.client %>/components/bootstrap-theme/*.{scss,sass}'
           ]
 
       # Inject component css into index.html

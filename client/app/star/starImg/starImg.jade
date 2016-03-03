@@ -1,0 +1,42 @@
+.row
+  .col-md-12
+    h4(style='font-weight: bold;') {{vm.title}}
+.row
+  .col-md-6
+    div(google-ad-sense='')
+    .imglist(ng-repeat='img in vm.img1')
+      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top:15px;')
+        | {{img.desc}}
+      a(ng-href='{{img.link}}', target='_blank', style='display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%;')
+        | [출처] {{img.link}}
+      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top: 5px;')
+        img(ng-src='{{img.link}}', style='width:100%;')
+
+  .col-md-6
+    //div(google-ad-sense='')
+    .imglist(ng-repeat='img in vm.img2')
+      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top:15px;')
+        | {{img.desc}}
+      a(ng-href='{{img.link}}', target='_blank', style='display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%;')
+        | [출처] {{img.link}}
+      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top: 5px;')
+        img(ng-src='{{img.link}}', style='width:100%;')
+
+.row
+  .col-md-12
+    //div(google-ad-sense='')
+    h5(style='font-weight: bold;') 관련 기사 모음
+    ol
+      li(ng-repeat='news in vm.newslist')
+        span(style='color:green;display:block') {{news.company}}
+          a(href='{{news.link}}', target='_blank', style='padding-left: 10px;')
+            | {{news.title}}
+        span {{news.desc}}
+
+.row
+  .col-md-12
+    h5(style='font-weight: bold;') 다른 사진 모음들
+      ol
+        li(ng-repeat='item in vm.postlist')
+          a(ng-href='/star/{{item.pid}}', target='_blank', style='padding-left: 10px;')
+            | {{item.title}}

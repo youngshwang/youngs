@@ -3,8 +3,8 @@
 angular.module 'youngsApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
   $scope.menu = [
-    title: 'Home'
-    link: '/'
+    title: 'Star'
+    link: '/star'
   ]
   $scope.isCollapsed = true
   $scope.isLoggedIn = Auth.isLoggedIn

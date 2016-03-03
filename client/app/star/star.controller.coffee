@@ -1,17 +1,12 @@
 'use strict'
 
 angular.module 'youngsApp'
-.controller 'StarCtrl', ($scope, star) ->
+.controller 'StarCtrl', ($scope, $stateParams, star) ->
   vm = @
+  vm.id = $stateParams.id
   vm.init = () ->
-    star.getPosts()
-    .then (doc) ->
-      console.log doc
-    .catch (e) ->
-      console.log e
+
     return
 
-
   vm.init()
-
   return vm

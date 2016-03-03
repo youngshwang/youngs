@@ -1,7 +1,9 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 $fa-font-path: "/bower_components/font-awesome/fonts";
 
+@import 'bootstrap-theme/_variables.scss';
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import 'bootstrap-theme/_bootswatch.scss';
 @import 'font-awesome/scss/font-awesome';
 
 /**
@@ -21,5 +23,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import 'star/star.scss';
+@import 'star/starImg/starImg.scss';
+@import 'googleAdSense/googleAdSense.scss';
 @import 'modal/modal.scss';
 // endinjector

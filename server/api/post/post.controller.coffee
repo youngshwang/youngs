@@ -11,10 +11,15 @@ exports.index = (req, res) ->
 
 # Get a single post
 exports.show = (req, res) ->
-  Post.findById req.params.id, (err, post) ->
+#  Post.findById req.params.id, (err, post) ->
+  Post.findOne {pid: req.params.id}, (err, doc) ->
     return handleError res, err  if err
-    return res.status(404).send 'Not Found'  if not post
-    res.json post
+    return res.status(404).send 'Not Found'  if not doc
+    Post.find {pid: {$lte: req.params.id + 5}}, {pid: 1, title: 1}
+    .limit 10
+    .exec (err, list) ->
+      return handleError res, err  if err
+      res.json {data: doc, list: list}
 
 # Creates a new post in the DB.
 exports.create = (req, res) ->
