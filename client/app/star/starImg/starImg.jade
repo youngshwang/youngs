@@ -1,42 +1,35 @@
 .row
-  .col-md-12
+  .col-sm-9
     h4(style='font-weight: bold;') {{vm.title}}
+  .col-sm-3
+    a.btn.btn-default.btn-lg.btn-block(href='', style='', ng-click='vm.save()') save
 .row
-  .col-md-6
+  .col-sm-9
     div(google-ad-sense='')
-    .imglist(ng-repeat='img in vm.img1')
-      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top:15px;')
-        | {{img.desc}}
-      a(ng-href='{{img.link}}', target='_blank', style='display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%;')
-        | [출처] {{img.link}}
-      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top: 5px;')
-        img(ng-src='{{img.link}}', style='width:100%;')
+    .list-group(style='margin-top:10px;')
+      .list-group-item.imglist(ng-repeat='img in vm.imglist')
+        button.close(type='button', ng-click='vm.removeImg(img.no)') x
+        a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top:10px;')
+          | {{img.desc}}
+        a(ng-href='{{img.link}}', target='_blank', style='display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%;')
+          | [출처] {{img.link}}
+        a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top: 5px;')
+          img(ng-src='{{img.link}}', style='width:100%;margin-bottom:10px;')
+    a.btn.btn-default.btn-lg.btn-block(href='', style='margin-bottom:50px;', ng-click='vm.save()') save
 
-  .col-md-6
-    //div(google-ad-sense='')
-    .imglist(ng-repeat='img in vm.img2')
-      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top:15px;')
-        | {{img.desc}}
-      a(ng-href='{{img.link}}', target='_blank', style='display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%;')
-        | [출처] {{img.link}}
-      a(ng-href='{{img.link}}', target='_blank', style='display:block; margin-top: 5px;')
-        img(ng-src='{{img.link}}', style='width:100%;')
-
-.row
-  .col-md-12
+  .col-sm-3
+    h5(style='font-weight: bold;') 다른 사진 모음들
+    .list-group
+      .list-group-item(ng-repeat='item in vm.postlist')
+        a(ng-href='/star/{{item.pid}}', style='font-size:13px;')
+          | {{item.title}}
     //div(google-ad-sense='')
     h5(style='font-weight: bold;') 관련 기사 모음
-    ol
-      li(ng-repeat='news in vm.newslist')
+    .list-group
+      .list-group-item(ng-repeat='news in vm.newslist', style='font-size:13px;')
         span(style='color:green;display:block') {{news.company}}
-          a(href='{{news.link}}', target='_blank', style='padding-left: 10px;')
+        a(href='{{news.link}}', target='_blank', style='display:block;')
             | {{news.title}}
-        span {{news.desc}}
+        span(style='font-size:12px;') {{news.desc}}
 
-.row
-  .col-md-12
-    h5(style='font-weight: bold;') 다른 사진 모음들
-      ol
-        li(ng-repeat='item in vm.postlist')
-          a(ng-href='/star/{{item.pid}}', target='_blank', style='padding-left: 10px;')
-            | {{item.title}}
+

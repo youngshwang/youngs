@@ -5,9 +5,15 @@ Post = require './post.model'
 
 # Get list of posts
 exports.index = (req, res) ->
-  Post.find (err, posts) ->
+#  Post.find (err, posts) ->
+#    return handleError res, err  if err
+#    res.status(200).json posts
+  Post.find {}
+  .sort {pid: -1}
+  .limit 1
+  .exec (err, doc) ->
     return handleError res, err  if err
-    res.status(200).json posts
+    res.json doc
 
 # Get a single post
 exports.show = (req, res) ->
@@ -30,11 +36,14 @@ exports.create = (req, res) ->
 # Updates an existing post in the DB.
 exports.update = (req, res) ->
   delete req.body._id  if req.body._id
-  Post.findById req.params.id, (err, post) ->
+  #  Post.findById req.params.id, (err, post) ->
+  Post.findOne {pid: req.params.id}, (err, post) ->
     return handleError res, err  if err
     return res.status(404).send 'Not Found'  if not post
-    updated = _.merge post, req.body
-    updated.save (err) ->
+    post.imglist = req.body.imglist
+    post.save (err) ->
+#    updated = _.merge post, req.body
+#    updated.save (err) ->
       return handleError res, err  if err
       res.status(200).json post
 

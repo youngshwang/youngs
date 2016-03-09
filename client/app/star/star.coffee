@@ -7,3 +7,9 @@ angular.module 'youngsApp'
     templateUrl: 'app/star/star.html'
     controller: 'StarCtrl'
     controllerAs: 'vm'
+
+  $stateProvider.state 'starlist',
+    url: '/star'
+    templateUrl: 'app/star/star.html'
+    controller: 'StarCtrl'
+    controllerAs: 'vm'

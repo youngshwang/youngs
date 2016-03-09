@@ -7,3 +7,6 @@ angular.module 'youngsApp'
 
   getPost: (pid) ->
     starFactory.one(pid).get()
+
+  savePost: (pid, data) ->
+    starFactory.one(pid).customPUT data

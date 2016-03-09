@@ -1,37 +1,55 @@
 'use strict'
 
 angular.module 'youngsApp'
-.directive 'starImg', ['star', (star) ->
+.directive 'starImg', ['$state','star', (star) ->
   scope: {}
   templateUrl: 'app/star/starImg/starImg.html'
   restrict: 'EA'
-  controller: ['star', starImgController]
+  controller: ['$state','star', starImgController]
   controllerAs: 'vm'
   bindToController: true
   link: starImgLink
 ]
 
-starImgController = (star) ->
+starImgController = ($state, star) ->
   vm = @
+  vm.data = {}
   vm.init = (pid) ->
-    console.log pid
-    star.getPost pid
-    .then (doc) ->
-      console.log doc
-      data = doc.data
-      vm.title = data.title
-      vm.newslist = data.newslist
-      vm.img1 = []
-      vm.img2 = []
-      cnt = 0
-      for img in data.imglist
-        vm.img1.push img if cnt % 2 is 0
-        vm.img2.push img if cnt % 2 is 1
-        cnt++
+    if pid
+      vm.pid = pid
+      _getPost pid
 
-      vm.postlist = doc.list
+
     return
 
+  vm.removeImg = (idx) ->
+    idx = _getImgIdx idx
+    vm.imglist.splice idx, 1
+
+  vm.save = () ->
+    console.log vm.data
+    star.savePost vm.pid, vm.data
+    .then (doc) ->
+      console.log doc
+      alert '저장되었습니다.'
+      $state.reload()
+
+  _getPost = (pid) ->
+    star.getPost pid
+    .then (doc) ->
+      data = doc.data
+      vm.data = data
+      vm.title = data.title
+      vm.imglist = data.imglist
+      vm.newslist = data.newslist
+      vm.postlist = doc.list
+
+  _getImgIdx = (idx) ->
+    cnt = 0
+    for img in vm.imglist
+      if img.no is idx then return cnt
+      cnt++
+    return -1
 
   return vm
 
