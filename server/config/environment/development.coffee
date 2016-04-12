@@ -6,5 +6,5 @@ module.exports =
 
   # MongoDB connection options
   mongo:
-    uri: 'mongodb://localhost/youngs-dev'
+    uri: 'mongodb://localhost/posting'
   seedDB: true
