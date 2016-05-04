@@ -1,17 +1,17 @@
 'use strict'
 
 angular.module 'youngsApp'
-.directive 'starImg', ['$state','star', (star) ->
+.directive 'starImg', ['$state','star', 'Auth', (star, Auth) ->
   scope: {}
   templateUrl: 'app/star/starImg/starImg.html'
   restrict: 'EA'
-  controller: ['$state','star', starImgController]
+  controller: ['$state','star', 'Auth', starImgController]
   controllerAs: 'vm'
   bindToController: true
   link: starImgLink
 ]
 
-starImgController = ($state, star) ->
+starImgController = ($state, star, Auth) ->
   vm = @
   vm.data = {}
   vm.init = (pid) ->
@@ -21,6 +21,8 @@ starImgController = ($state, star) ->
 
 
     return
+
+  vm.isAdmin = Auth.isAdmin
 
   vm.removeImg = (idx) ->
     idx = _getImgIdx idx

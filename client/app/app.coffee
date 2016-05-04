@@ -6,7 +6,8 @@ angular.module 'youngsApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'restangular'
+  'restangular',
+  'ngMaterial'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) ->
   RestangularProvider.setBaseUrl '/api'
@@ -43,4 +44,3 @@ angular.module 'youngsApp', [
 #      k.indexOf('google') >= 0
 #    ).forEach (key) ->
 #        delete $window[key]
-

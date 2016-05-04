@@ -24,6 +24,34 @@ angular.module 'youngsApp'
 
   # Confirmation modals
   confirm:
+    addShopping: ->
+      addShoppingModal = openModal(
+        modal:
+          dismissable: true
+          title: '쇼핑 페이지 하나 추가'
+          html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>'
+          buttons: [
+            {
+              classes: 'btn-danger'
+              text: 'Delete'
+              click: (e) ->
+                deleteModal.close e
+                return
+            }
+            {
+              classes: 'btn-default'
+              text: 'Cancel'
+              click: (e) ->
+                deleteModal.dismiss e
+                return
+            }
+          ]
+      , 'modal-danger')
+      deleteModal.result.then (event) ->
+        del.apply event, args
+        return
+
+      return
 
     ###
     Create a function to open a delete confirmation modal (ex. ng-click='myModalFn(name, arg1, arg2...)')

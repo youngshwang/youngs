@@ -8,4 +8,4 @@ ShoppingSchema = new Schema
   info: String
   active: Boolean
 
-module.exports = mongoose.model 'Shopping', ShoppingSchema
+module.exports = mongoose.model 'Shopping', ShoppingSchema,  'shopping'
