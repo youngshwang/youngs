@@ -6,8 +6,7 @@ angular.module 'youngsApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'restangular',
-  'ngMaterial'
+  'restangular'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) ->
   RestangularProvider.setBaseUrl '/api'

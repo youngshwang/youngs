@@ -1,5 +1,4 @@
-div(ng-include='"components/navbar/navbar.html"')
+div(ng-include='"components/navbar/navbar.html"', ng-cloak='')
 
-.container
-  div(star-img='', pid='{{vm.id}}')
-
+.container.ng-cloak
+  .ng-cloak(star-img='', pid='{{vm.id}}')
