@@ -16,10 +16,10 @@ all =
   root: path.normalize(__dirname + '/../../..')
 
   # Server port
-  port: process.env.PORT or 9000
+  port: process.env.PORT or 9089
 
   # Should we populate the DB with sample data?
-  seedDB: false
+  seedDB: process.env.SEED_DB or false
 
   # Secret for session, you will want to change this and make it an environment variable
   secrets:
